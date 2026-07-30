@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aqua Atlas — A Guide to the World's Finest Waters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f9fc;
+      --surface: #ffffff;
+      --border: #e8edf5;
+      --text-primary: #0f1923;
+      --text-secondary: #556070;
+      --text-muted: #8b95a3;
+      --accent: #2a6db5;
+      --accent-light: #e8f0fb;
+      --accent-pale: #f0f5fd;
+      --premium-gold: #b8860b;
+      --premium-gold-light: #fdf8ee;
+      --sparkling: #0e8a6e;
+      --sparkling-light: #eaf5f1;
+      --still: #2a6db5;
+      --still-light: #e8f0fb;
+      --shadow-sm: 0 1px 4px rgba(15,25,35,0.06);
+      --shadow-md: 0 4px 20px rgba(15,25,35,0.08);
+      --shadow-lg: 0 8px 40px rgba(15,25,35,0.12);
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, #2a6db5 0%, #1a4a8a 100%);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .logo-text span { color: var(--accent); }
+
+    nav { display: flex; gap: 28px; align-items: center; }
+    nav a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #f0f5fd 0%, #e8f4f0 50%, #f8f9fc 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 24px 64px;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--text-primary);
+      max-width: 680px;
+      margin: 0 auto 20px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── MAIN ── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    /* ── FILTERS ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      color: var(--text-secondary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 7px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.22s, transform 0.22s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+
+    .card-banner {
+      height: 5px;
+    }
+
+    .card-banner.still { background: linear-gradient(90deg, #2a6db5, #5b9bd5); }
+    .card-banner.sparkling { background: linear-gradient(90deg, #0e8a6e, #1eb89d); }
+
+    .card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+
+    .card-brand-flag {
+      font-size: 1.7rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .card-badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .badge-still { background: var(--still-light); color: var(--still); }
+    .badge-sparkling { background: var(--sparkling-light); color: var(--sparkling); }
+    .badge-premium { background: var(--premium-gold-light); color: var(--premium-gold); }
+    .badge-mainstream { background: var(--accent-pale); color: var(--accent); }
+
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .card-origin {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .card-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+      margin-top: auto;
+    }
+
+    .spec {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .spec-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .spec-value {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .taste-dots {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+
+    .taste-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .taste-dot.filled { background: var(--accent); }
+
+    /* ── MODAL ── */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 18, 28, 0.55);
+      z-index: 500;
+      backdrop-filter: blur(4px);
+      padding: 32px 20px;
+      overflow-y: auto;
+      animation: fadeIn 0.18s ease;
+    }
+
+    .overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .modal {
+      background: var(--surface);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 640px;
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.22s ease;
+      overflow: hidden;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-banner {
+      height: 6px;
+    }
+    .modal-banner.still { background: linear-gradient(90deg, #2a6db5, #5b9bd5); }
+    .modal-banner.sparkling { background: linear-gradient(90deg, #0e8a6e, #1eb89d); }
+
+    .modal-header {
+      padding: 28px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .modal-flag { font-size: 2.6rem; line-height: 1; }
+
+    .modal-title-block { flex: 1; }
+
+    .modal-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .modal-origin {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .close-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+
+    .close-btn:hover { background: var(--border); }
+
+    .modal-body { padding: 28px; }
+
+    .modal-badges { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+
+    .modal-desc {
+      font-size: 0.97rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .modal-history {
+      background: var(--accent-pale);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+    }
+
+    .modal-history-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .modal-history p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .modal-specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .modal-spec {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+
+    .modal-spec-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .modal-spec-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .modal-spec-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .modal-minerals {
+      margin-bottom: 24px;
+    }
+
+    .modal-section-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .mineral-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mineral-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mineral-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      width: 90px;
+      flex-shrink: 0;
+    }
+
+    .mineral-bar-track {
+      flex: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .mineral-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #5b9bd5);
+      border-radius: 3px;
+      transition: width 0.6s ease;
+    }
+
+    .mineral-val {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      width: 60px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .taste-profile {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .taste-tag {
+      background: var(--accent-pale);
+      color: var(--accent);
+      border: 1px solid var(--accent-light);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    .price-band {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .price-dots span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      margin: 0 2px;
+    }
+
+    .price-dots span.active { background: var(--premium-gold); }
+
+    /* ── GLOSSARY SECTION ── */
+    .glossary {
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .glossary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+    }
+
+    .glossary-term {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .glossary-def {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    footer .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .nav-inner nav { display: none; }
+      .hero { padding: 52px 20px 44px; }
+      .hero-stats { gap: 24px; }
+      .modal-specs { grid-template-columns: 1fr 1fr; }
+      .modal-name { font-size: 1.45rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card, .modal, .overlay, .mineral-bar-fill { transition: none; animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">💧</div>
+      <span class="logo-text">Aqua <span>Atlas</span></span>
+    </a>
+    <nav>
+      <a href="#brands">All Brands</a>
+      <a href="#glossary">Glossary</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">A Connoisseur's Reference</div>
+  <h1>The World's Finest <em>Bottled Waters</em>, Explored</h1>
+  <p>From ancient alpine springs to volcanic aquifers — discover the origins, mineral profiles, and character behind each bottle.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">8</span><span class="stat-label">Brands</span></div>
+    <div class="stat"><span class="stat-num">8</span><span class="stat-label">Countries</span></div>
+    <div class="stat"><span class="stat-num">2</span><span class="stat-label">Categories</span></div>
+    <div class="stat"><span class="stat-num">Still & Sparkling</span><span class="stat-label">Types</span></div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="container" id="brands">
+  <div class="section-header">
+    <h2 class="section-title">All Brands</h2>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="still">Still</button>
+      <button class="filter-btn" data-filter="sparkling">Sparkling</button>
+      <button class="filter-btn" data-filter="mainstream">Mainstream</button>
+      <button class="filter-btn" data-filter="premium">Premium</button>
+    </div>
+  </div>
+  <div class="grid" id="brand-grid"></div>
+
+  <!-- GLOSSARY -->
+  <div class="glossary" id="glossary">
+    <h2 class="section-title">Water Glossary</h2>
+    <div class="glossary-grid">
+      <div class="glossary-card">
+        <div class="glossary-term">TDS — Total Dissolved Solids</div>
+        <div class="glossary-def">Milligrams of dissolved minerals per litre. Lower TDS (under 100 mg/L) tastes lighter; higher TDS often brings fuller, mineral-forward character.</div>
+      </div>
+      <div class="glossary-card">
+        <div class="glossary-term">pH Level</div>
+        <div class="glossary-def">Measures acidity vs. alkalinity on a 0–14 scale. 7 is neutral. Sparkling waters are more acidic (5–6); many still waters are slightly alkaline (7–8).</div>
+      </div>
+      <div class="glossary-card">
+        <div class="glossary-term">Artesian Aquifer</div>
+        <div class="glossary-def">A confined underground layer where water is naturally pressurised and rises without pumping — protected from surface contamination.</div>
+      </div>
+      <div class="glossary-card">
+        <div class="glossary-term">Spring Water</div>
+        <div class="glossary-def">Flows naturally to the surface from a subsurface aquifer. Must emerge at the same point of origin and be collected at the source or via a borehole.</div>
+      </div>
+      <div class="glossary-card">
+        <div class="glossary-term">Naturally Sparkling</div>
+        <div class="glossary-def">Contains CO₂ that occurs naturally in the source, sometimes supplemented with carbonation from the same source during bottling.</div>
+      </div>
+      <div class="glossary-card">
+        <div class="glossary-term">Silica</div>
+        <div class="glossary-def">A mineral often credited with benefits to skin, hair, and nails. Found in notably high concentrations in Volvic water from volcanic basalt.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Aqua Atlas</p>
+  <p>An independent reference guide to the world's bottled waters. Mineral data is approximate and may vary by source batch.</p>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true">
+  <div class="modal" id="modal">
+    <div class="modal-banner" id="modal-banner"></div>
+    <div class="modal-header">
+      <div style="display:flex;align-items:flex-start;gap:16px;flex:1">
+        <div class="modal-flag" id="modal-flag"></div>
+        <div class="modal-title-block">
+          <div class="modal-name" id="modal-name"></div>
+          <div class="modal-origin" id="modal-origin"></div>
+        </div>
+      </div>
+      <button class="close-btn" id="close-btn" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+  const brands = [
+    {
+      id: 'evian',
+      name: 'Evian',
+      flag: '🇫🇷',
+      origin: 'Évian-les-Bains, French Alps',
+      type: 'still',
+      tier: 'mainstream',
+      tds: 357,
+      ph: 7.2,
+      price: 2,
+      taste: ['Soft', 'Clean', 'Lightly mineral', 'Neutral finish'],
+      desc: 'Evian is one of the world's most recognised spring waters, sourced from a natural spring in the French Alps. Its water spends over 15 years filtering through glacial rocks, emerging with a balanced mineral profile and the famously smooth, neutral taste that has made it a global icon.',
+      history: 'The source was discovered in 1789 when a French nobleman noticed the spring's curative properties. Bottling began in 1826 and by the early 20th century Evian had become synonymous with Alpine purity. It is now owned by Danone.',
+      minerals: [
+        { name: 'Calcium', mg: 80, max: 150 },
+        { name: 'Magnesium', mg: 26, max: 100 },
+        { name: 'Potassium', mg: 1, max: 50 },
+        { name: 'Silica', mg: 15, max: 60 },
+      ],
+      source: 'Natural spring'
+    },
+    {
+      id: 'fiji',
+      name: 'FIJI Water',
+      flag: '🇫🇯',
+      origin: 'Viti Levu, Fiji',
+      type: 'still',
+      tier: 'mainstream',
+      tds: 222,
+      ph: 7.7,
+      price: 2,
+      taste: ['Silky', 'Sweet', 'Soft', 'Clean finish'],
+      desc: 'FIJI Water comes from a deep artesian aquifer beneath the remote Yaqara Valley on Viti Levu island. Rain filters through layers of volcanic rock for centuries before emerging — unchlorinated, untouched, and naturally high in silica, which gives it a distinctly silky mouthfeel.',
+      history: 'Founded in 1996 by Canadian entrepreneur David Gilmour, FIJI Water transformed bottled water into a lifestyle product. Its square bottle and "untouched by man" marketing positioned it as a premium choice on every restaurant table from New York to Tokyo.',
+      minerals: [
+        { name: 'Silica', mg: 93, max: 150 },
+        { name: 'Calcium', mg: 18, max: 150 },
+        { name: 'Magnesium', mg: 15, max: 100 },
+        { name: 'Potassium', mg: 5, max: 50 },
+      ],
+      source: 'Artesian aquifer'
+    },
+    {
+      id: 'volvic',
+      name: 'Volvic',
+      flag: '🇫🇷',
+      origin: 'Auvergne Volcanoes, France',
+      type: 'still',
+      tier: 'mainstream',
+      tds: 109,
+      ph: 7.0,
+      price: 1,
+      taste: ['Light', 'Delicate', 'Very soft', 'Neutral'],
+      desc: 'Volvic is filtered through six layers of volcanic basalt over five years in the Auvergne volcanic park, one of Europe's largest protected natural areas. The result is an exceptionally light, low-mineral water with naturally occurring silica — one of its most distinctive attributes.',
+      history: 'Sourced from the Clairvic spring since 1927, Volvic is named after the commune of Volvic situated at the heart of the Chaîne des Puys volcano chain. Today it is owned by Danone alongside Evian, though the two waters have markedly different mineral profiles.',
+      minerals: [
+        { name: 'Silica', mg: 31, max: 150 },
+        { name: 'Calcium', mg: 12, max: 150 },
+        { name: 'Magnesium', mg: 8, max: 100 },
+        { name: 'Potassium', mg: 6, max: 50 },
+      ],
+      source: 'Natural spring'
+    },
+    {
+      id: 'perrier',
+      name: 'Perrier',
+      flag: '🇫🇷',
+      origin: 'Vergèze, Gard, France',
+      type: 'sparkling',
+      tier: 'mainstream',
+      tds: 475,
+      ph: 5.5,
+      price: 2,
+      taste: ['Crisp', 'Bold bubbles', 'Mineral', 'Dry finish'],
+      desc: 'Perrier is the world's best-known sparkling mineral water, with naturally carbonated spring water emerging near the village of Vergèze in southern France. Its CO₂ and water come from the same source, are separated at the spring, and recombined during bottling — making it one of few genuinely naturally sparkling brands.',
+      history: 'The spring was originally known to the Romans who bathed in it. British entrepreneur St John Harmsworth acquired the source in 1903, naming it after his doctor Louis Perrier. In 1992 a worldwide product recall — caused by benzene contamination in filters — threatened the brand before Nestlé acquired it and restored its reputation.',
+      minerals: [
+        { name: 'Calcium', mg: 155, max: 200 },
+        { name: 'Magnesium', mg: 6, max: 100 },
+        { name: 'Potassium', mg: 1, max: 50 },
+        { name: 'Chloride', mg: 21, max: 80 },
+      ],
+      source: 'Naturally sparkling spring'
+    },
+    {
+      id: 'acquapanna',
+      name: 'Acqua Panna',
+      flag: '🇮🇹',
+      origin: 'Scarperia, Tuscany, Italy',
+      type: 'still',
+      tier: 'premium',
+      tds: 204,
+      ph: 8.0,
+      price: 3,
+      taste: ['Velvety', 'Delicate', 'Mildly sweet', 'Lingering finish'],
+      desc: 'Acqua Panna flows from the Panna estate in the Apennine hills of Tuscany, filtering through sandstone and limestone for over 14 years. Its slightly alkaline pH, low minerality, and famously smooth, velvety texture make it a favourite pairing for white wine and delicate cuisine in fine dining settings worldwide.',
+      history: 'The Villa Panna estate dates to the 14th century, with Medici family records referencing the spring's exceptional water. Bottling began in 1927 and Acqua Panna gradually built a reputation in Italian fine dining before Nestlé (now Sanpellegrino Group) expanded it globally as a restaurant and hospitality staple.',
+      minerals: [
+        { name: 'Calcium', mg: 34, max: 150 },
+        { name: 'Magnesium', mg: 6, max: 100 },
+        { name: 'Sulphate', mg: 28, max: 100 },
+        { name: 'Silica', mg: 11, max: 60 },
+      ],
+      source: 'Natural spring'
+    },
+    {
+      id: 'pelligrino',
+      name: 'S.Pellegrino',
+      flag: '🇮🇹',
+      origin: 'San Pellegrino Terme, Lombardy, Italy',
+      type: 'sparkling',
+      tier: 'premium',
+      tds: 1109,
+      ph: 5.6,
+      price: 3,
+      taste: ['Rich', 'Complex mineral', 'Fine bubbles', 'Bold'],
+      desc: 'San Pellegrino is among the most mineral-rich bottled waters in the world, with a TDS of over 1000 mg/L. Sourced from a spring at the foot of the Dolomites and naturally carbonated, its fine, persistent bubbles and robust mineral character make it an iconic restaurant water and aperitivo companion.',
+      history: 'Leonardo da Vinci is said to have visited the spring in the late 15th century. Commercial bottling began in 1899 and S.Pellegrino quickly earned recognition at the 1906 Milan Expo. Today it is the flagship of the Sanpellegrino Group (owned by Nestlé) and synonymous with Italian fine dining culture.',
+      minerals: [
+        { name: 'Calcium', mg: 174, max: 200 },
+        { name: 'Magnesium', mg: 56, max: 100 },
+        { name: 'Sulphate', mg: 432, max: 500 },
+        { name: 'Chloride', mg: 57, max: 80 },
+      ],
+      source: 'Natural spring'
+    },
+    {
+      id: 'hildon',
+      name: 'Hildon',
+      flag: '🇬🇧',
+      origin: 'Hampshire, England',
+      type: 'still',
+      tier: 'premium',
+      tds: 312,
+      ph: 7.6,
+      price: 3,
+      taste: ['Rounded', 'Clean', 'Gently mineral', 'Balanced'],
+      desc: 'Hildon is drawn from a chalk aquifer in the Hampshire countryside and is the preferred still water of Buckingham Palace, The Ritz London, and Royal Warrant holders worldwide. Both still and sparkling variants share a balanced, rounded character and delicate effervescence (in the sparkling) that suits fine cuisine without overpowering it.',
+      history: 'Established in 1989, Hildon quickly distinguished itself by targeting the British luxury hospitality market. Its Royal Warrant of Appointment — granted by HM The Queen — cemented its status as Britain's leading prestige water brand, found on tables at state banquets and in Michelin-starred restaurants.',
+      minerals: [
+        { name: 'Calcium', mg: 98, max: 150 },
+        { name: 'Magnesium', mg: 4, max: 100 },
+        { name: 'Sulphate', mg: 12, max: 100 },
+        { name: 'Bicarbonate', mg: 201, max: 300 },
+      ],
+      source: 'Chalk aquifer'
+    },
+    {
+      id: 'blingh2o',
+      name: 'Bling H₂O',
+      flag: '🇺🇸',
+      origin: 'English Mountain Spring, Tennessee, USA',
+      type: 'still',
+      tier: 'premium',
+      tds: 40,
+      ph: 7.4,
+      price: 4,
+      taste: ['Ultra-pure', 'Neutral', 'Clean', 'Barely-there mineral'],
+      desc: 'Bling H₂O is the world's most famously extravagant bottled water — sold in a frosted glass bottle hand-decorated with Swarovski crystals. The water itself is ultra-purified using a nine-step process from an English Mountain spring in Tennessee, resulting in an exceptionally low TDS and near-neutral taste profile.',
+      history: 'Created in 2005 by Hollywood TV writer Kevin Boyd, who noticed celebrities on set received the same water as crew. He set out to make water a luxury status symbol. Bling H₂O went on to appear at Oscar parties, celebrity events, and in music videos. A limited-edition bottle can fetch hundreds of dollars — mostly for the crystal packaging.',
+      minerals: [
+        { name: 'Calcium', mg: 6, max: 150 },
+        { name: 'Magnesium', mg: 1, max: 100 },
+        { name: 'Potassium', mg: 1, max: 50 },
+        { name: 'Silica', mg: 3, max: 60 },
+      ],
+      source: 'Mountain spring (9-step purification)'
+    }
+  ];
+
+  // Render cards
+  const grid = document.getElementById('brand-grid');
+
+  function renderDots(count, filled) {
+    return Array.from({length: count}, (_, i) =>
+      `<div class="taste-dot${i < filled ? ' filled' : ''}"></div>`
+    ).join('');
+  }
+
+  function tasteScore(tds) {
+    if (tds < 100) return 1;
+    if (tds < 250) return 2;
+    if (tds < 500) return 3;
+    if (tds < 800) return 4;
+    return 5;
+  }
+
+  function renderCard(b) {
+    return `
+      <div class="card" data-id="${b.id}" data-type="${b.type}" data-tier="${b.tier}" role="button" tabindex="0" aria-label="Learn more about ${b.name}">
+        <div class="card-banner ${b.type}"></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-brand-flag">${b.flag}</div>
+            <div class="card-badges">
+              <span class="badge badge-${b.type}">${b.type}</span>
+              <span class="badge badge-${b.tier}">${b.tier}</span>
+            </div>
+          </div>
+          <div class="card-name">${b.name}</div>
+          <div class="card-origin">📍 ${b.origin}</div>
+          <div class="card-desc">${b.desc.substring(0, 140)}…</div>
+          <div class="card-specs">
+            <div class="spec">
+              <span class="spec-label">TDS</span>
+              <span class="spec-value">${b.tds} mg/L</span>
+            </div>
+            <div class="spec">
+              <span class="spec-label">pH</span>
+              <span class="spec-value">${b.ph}</span>
+            </div>
+            <div class="spec">
+              <span class="spec-label">Source</span>
+              <span class="spec-value">${b.source.split(' (')[0]}</span>
+            </div>
+            <div class="spec">
+              <span class="spec-label">Mineral intensity</span>
+              <div class="taste-dots">${renderDots(5, tasteScore(b.tds))}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  grid.innerHTML = brands.map(renderCard).join('');
+
+  // Filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.card').forEach(card => {
+        const show = f === 'all'
+          || card.dataset.type === f
+          || card.dataset.tier === f;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  // Modal
+  const overlay = document.getElementById('overlay');
+  const modal = document.getElementById('modal');
+
+  function openModal(id) {
+    const b = brands.find(x => x.id === id);
+    if (!b) return;
+
+    document.getElementById('modal-banner').className = `modal-banner ${b.type}`;
+    document.getElementById('modal-flag').textContent = b.flag;
+    document.getElementById('modal-name').textContent = b.name;
+    document.getElementById('modal-origin').textContent = `📍 ${b.origin}`;
+
+    const priceDots = Array.from({length: 4}, (_, i) =>
+      `<span class="${i < b.price ? 'active' : ''}">$</span>`
+    ).join('');
+
+    const mineralBars = b.minerals.map(m => `
+      <div class="mineral-row">
+        <span class="mineral-name">${m.name}</span>
+        <div class="mineral-bar-track"><div class="mineral-bar-fill" style="width:${Math.min(100, Math.round(m.mg / m.max * 100))}%"></div></div>
+        <span class="mineral-val">${m.mg} mg/L</span>
+      </div>
+    `).join('');
+
+    const tasteTags = b.taste.map(t => `<span class="taste-tag">${t}</span>`).join('');
+
+    document.getElementById('modal-body').innerHTML = `
+      <div class="modal-badges">
+        <span class="badge badge-${b.type}">${b.type}</span>
+        <span class="badge badge-${b.tier}">${b.tier}</span>
+      </div>
+      <p class="modal-desc">${b.desc}</p>
+      <div class="modal-history">
+        <div class="modal-history-title">History & Heritage</div>
+        <p>${b.history}</p>
+      </div>
+      <div class="modal-specs">
+        <div class="modal-spec">
+          <div class="modal-spec-label">TDS</div>
+          <div class="modal-spec-value">${b.tds}</div>
+          <div class="modal-spec-sub">mg per litre</div>
+        </div>
+        <div class="modal-spec">
+          <div class="modal-spec-label">pH Level</div>
+          <div class="modal-spec-value">${b.ph}</div>
+          <div class="modal-spec-sub">${b.ph >= 7 ? 'Alkaline' : 'Acidic'}</div>
+        </div>
+        <div class="modal-spec">
+          <div class="modal-spec-label">Source Type</div>
+          <div class="modal-spec-value" style="font-size:0.82rem;font-weight:600">${b.source}</div>
+          <div class="modal-spec-sub">&nbsp;</div>
+        </div>
+      </div>
+      <div class="modal-minerals">
+        <div class="modal-section-title">Key Minerals</div>
+        <div class="mineral-bars">${mineralBars}</div>
+      </div>
+      <div>
+        <div class="modal-section-title">Taste Profile</div>
+        <div class="taste-profile">${tasteTags}</div>
+      </div>
+      <div class="price-band">
+        <span style="font-size:0.78rem;font-weight:600;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase">Price Range</span>
+        <div class="price-dots">${priceDots}</div>
+        <span style="font-size:0.8rem;color:var(--text-muted)">${['Budget', 'Everyday', 'Premium', 'Luxury'][b.price - 1]}</span>
+      </div>
+    `;
+
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Animate bars after a tick
+    setTimeout(() => {
+      document.querySelectorAll('.mineral-bar-fill').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0';
+        requestAnimationFrame(() => { bar.style.width = w; });
+      });
+    }, 50);
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  grid.addEventListener('click', e => {
+    const card = e.target.closest('.card');
+    if (card) openModal(card.dataset.id);
+  });
+
+  grid.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const card = e.target.closest('.card');
+      if (card) openModal(card.dataset.id);
+    }
+  });
+
+  document.getElementById('close-btn').addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
